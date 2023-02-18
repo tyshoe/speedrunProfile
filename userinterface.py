@@ -21,6 +21,10 @@ class App(customtkinter.CTk):
         self.resizable(False, False)
 
         def searchUser():
+            # destroys widgets in mainFrame to refresh visuals
+            for widget in frameMain.winfo_children():
+                widget.destroy()
+
             # Get Data about user
             userName = self.entry.get()
             userProfile  = datarequest.getUserProfile(userName)
@@ -67,7 +71,7 @@ class App(customtkinter.CTk):
         # Top frame
         self.entry = customtkinter.CTkEntry(frameTop, placeholder_text="Username", width=WIDTH*.20)
         self.entry.grid(row=0, column=1, padx=(20, 20), pady=(25,25), sticky="n")
-        self.search_button = customtkinter.CTkButton(frameTop, text='Search', command = searchUser)
+        self.search_button = customtkinter.CTkButton(frameTop, width=40, text='Search', command = searchUser)
         self.search_button.grid(row=0, column=2, padx=10, pady=10)
         self.appearance_mode_label = customtkinter.CTkLabel(frameTop, text="Search", anchor="n")
         self.appearance_mode_label.grid(row=0, column=6, padx=20, pady=(10, 0))
