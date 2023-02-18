@@ -22,15 +22,20 @@ class App(customtkinter.CTk):
 
         def searchUser():
             # destroys widgets in mainFrame to refresh visuals
-            for widget in frameMain.winfo_children():
-                widget.destroy()
+            if frameMain.winfo_children() is not None:
+                for widget in frameMain.winfo_children():
+                    widget.destroy()
 
-            # Get Data about user
+            # Get user name and clear entry
             userName = self.entry.get()
+            self.entry.delete(0, len(userName))
+            self.focus()
+
+            # Get user data
             userProfile  = datarequest.getUserProfile(userName)
             personalBests  = datarequest.getPersonalBests(userProfile.get('userId'))
             
-            # Display Data about user
+            # Display user data
             self.userNameLabel = customtkinter.CTkLabel(frameMain, text="{}".format(userName), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.userNameLabel.grid(row=0, column=0, padx=10, pady=10)
 
@@ -57,16 +62,11 @@ class App(customtkinter.CTk):
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=0, minsize=HEIGHT*.15)
         self.rowconfigure(1, weight=1, minsize=HEIGHT*.85)
-        frameTop = customtkinter.CTkFrame(self, fg_color='#3B3F44', corner_radius=0)
-        frameMain = customtkinter.CTkFrame(self, corner_radius=0)
 
-        # Configure size within top frame
+        # Create top frame and configure grid size
+        frameTop = customtkinter.CTkFrame(self, fg_color='#3B3F44', corner_radius=0)
         frameTop.grid(row=0, column=0, sticky='NSWE')
         # TODO: create grid within top frame to align components
-
-        # Configure size within main frame
-        frameMain.grid(row=1, column=0, sticky='NSWE')
-        # TODO: create grid within main frame to align components
 
         # Top frame
         self.entry = customtkinter.CTkEntry(frameTop, placeholder_text="Username", width=WIDTH*.20)
@@ -78,6 +78,11 @@ class App(customtkinter.CTk):
         self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(frameTop, values=["System", "Dark", "Light"],
                                                                        command=self.change_appearance_mode_event)
         self.appearance_mode_optionemenu.grid(row=0, column=6, padx=10, pady=10)
+
+        # Create main frame and configure grid size
+        frameMain = customtkinter.CTkFrame(self, corner_radius=0)
+        frameMain.grid(row=1, column=0, sticky='NSWE')
+        # TODO: create grid within main frame to align components
 
         # Main frame
         # TODO: main frame components here
