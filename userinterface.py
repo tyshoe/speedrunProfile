@@ -77,10 +77,7 @@ class App(customtkinter.CTk):
 
         # Main frame
         # TODO: main frame components here
+
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
         
-
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()
