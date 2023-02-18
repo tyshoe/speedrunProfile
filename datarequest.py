@@ -2,23 +2,20 @@ import requests
 
 
 def getDataFromJson(url):
-    """Gets data from dictionary of json file from HTTP request
-    """
+    """Gets data from dictionary of json file from HTTP request"""
     r = (requests.get(url))
     print(r)
     return r.json()['data']
 
-getDataFromJson('https://www.speedrun.com/api/v1/users?lookup=tyshoe')
 
 def getUserProfile(profileToSearch):
-    """Gets data about user with parameter of user 
-    """
+    """Gets data about user with parameter of user """
     url = "https://www.speedrun.com/api/v1/users?lookup={}".format(profileToSearch)
 
     data = getDataFromJson(url)[0]
 
-    print()
-    print ('DATA: ' + str(data))
+    # print()
+    # print ('DATA: ' + str(data))
 
     # set variables from data
     userId = data['id']
@@ -32,8 +29,7 @@ def getUserProfile(profileToSearch):
 
 
 def getPersonalBests(userId):
-    """Gets personal bests data from userId 
-    """
+    """Gets personal bests data from userId """
     url = "https://www.speedrun.com/api/v1/users/{}/personal-bests".format(userId)
     data = getDataFromJson(url)
 
@@ -62,6 +58,6 @@ def getPersonalBests(userId):
 
     return personalBests     
 
-
+# getDataFromJson('https://www.speedrun.com/api/v1/users?lookup=tyshoe')
 # getUserProfile('tyshoe')
 # getPersonalBests('jmo3vke8')
