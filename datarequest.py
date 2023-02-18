@@ -1,3 +1,4 @@
+import datetime
 import requests
 
 
@@ -21,9 +22,12 @@ def getUserProfile(profileToSearch):
     userId = data['id']
     webLink = data['weblink']
     userName = data['names']['international']
-    signUpDate = data['signup']
+    signup = (datetime.datetime.strptime(data['signup'], "%Y-%m-%dT%H:%M:%SZ")) # grabs data from date timezone string
+    
+    userSignup = signup.strftime("%m-%d-%Y")
 
-    userProfile = {'userId': userId, 'webLink': webLink, 'userName': userName, 'signUpDate': signUpDate}
+
+    userProfile = {'userId': userId, 'webLink': webLink, 'userName': userName, 'userSignup': userSignup}
 
     return userProfile
 
@@ -37,7 +41,7 @@ def getPersonalBests(userId):
     secondPlace = 0
     thirdPlace = 0
 
-    # print ('DATA: {}'.format(str(data[0])))
+    print ('DATA: {}'.format(str(data[0])))
 
     # check if user has runs
     if not data:

@@ -39,13 +39,10 @@ class App(customtkinter.CTk):
             self.userNameLabel = customtkinter.CTkLabel(frameMain, text="{}".format(userName), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.userNameLabel.grid(row=0, column=0, padx=10, pady=10)
 
-            self.userIdLabel = customtkinter.CTkLabel(frameMain, text="{}".format(userProfile.get('userId')), font=customtkinter.CTkFont(size=20, weight="bold"))
-            self.userIdLabel.grid(row=1, column=0, padx=10, pady=10)
-
             self.webLinkLabel = customtkinter.CTkLabel(frameMain, text="{}".format(userProfile.get('webLink')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.webLinkLabel.grid(row=2, column=0, padx=10, pady=10)
         
-            self.signUpDateLabel = customtkinter.CTkLabel(frameMain, text="{}".format(userProfile.get('signUpDate')), font=customtkinter.CTkFont(size=20, weight="bold"))
+            self.signUpDateLabel = customtkinter.CTkLabel(frameMain, text="{}".format(userProfile.get('userSignup')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.signUpDateLabel.grid(row=3, column=0, padx=10, pady=10)
 
             self.firstPlaceLabel = customtkinter.CTkLabel(frameMain, text="{}".format(personalBests.get('firstPlace')), font=customtkinter.CTkFont(size=20, weight="bold"))
