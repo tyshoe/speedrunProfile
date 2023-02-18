@@ -58,8 +58,8 @@ def getPersonalBests(userId):
             secondPlace += 1
         elif data[run]['place'] == 3:
             thirdPlace += 1
-        print ('DATA {}: {}'.format(run, (data[0])))
-        print ('')
+        # print ('DATA {}: {}'.format(run, (data[0])))
+        # print ('')
 
     print('1st Place runs: {}'.format(str(firstPlace)))
     print('2nd Place runs: {}'.format(str(secondPlace)))

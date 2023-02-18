@@ -1,3 +1,4 @@
+import webbrowser
 import customtkinter
 import datarequest
 
@@ -21,6 +22,11 @@ class App(customtkinter.CTk):
         self.resizable(False, False)
 
         def searchUser():
+            
+            def callback(url):
+                webbrowser.open_new_tab(userProfile.get('webLink'))
+ 
+            
             # destroys widgets in mainFrame to refresh visuals
             if frameMain.winfo_children() is not None:
                 for widget in frameMain.winfo_children():
@@ -44,7 +50,8 @@ class App(customtkinter.CTk):
             self.userNameLabel.grid(row=0, column=0, padx=10, pady=10)
 
             self.webLinkLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
-                userProfile.get('webLink')), font=customtkinter.CTkFont(size=20, weight="bold"))
+                userProfile.get('webLink')), font=customtkinter.CTkFont(size=20, weight="bold"), text_color='#038aff')
+            self.webLinkLabel.bind("<Button>", lambda e: callback(userProfile.get('webLink'))) # click to open link
             self.webLinkLabel.grid(row=1, column=0, padx=10, pady=10)
 
             self.signUpDateLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
