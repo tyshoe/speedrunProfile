@@ -1,7 +1,7 @@
 import webbrowser
 import customtkinter
+from PIL import Image, ImageTk
 import datarequest
-
 
 # Settings
 customtkinter.set_appearance_mode("System")
@@ -20,6 +20,9 @@ class App(customtkinter.CTk):
         self.title("Speedrun Profile")
         self.geometry("{}x{}".format(WIDTH, HEIGHT))
         self.resizable(False, False)
+
+        speedrun = Image.open('speedrun.png').resize((20,20))
+        speedrun = ImageTk.PhotoImage(speedrun)
 
         def searchUser():
             
@@ -44,47 +47,49 @@ class App(customtkinter.CTk):
             runCountData = datarequest.getRunCount(
                 userProfile.get('userId'))
 
+            profileFrame = customtkinter.CTkFrame(frameMain)
+            profileFrame.grid(row=0, column=1)
+
             # Display user data
-            self.userNameLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
+            self.userNameLabel = customtkinter.CTkLabel(profileFrame, text="{}".format(
                 userProfile.get('userName')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.userNameLabel.grid(row=0, column=0, padx=10, pady=10)
 
-            self.webLinkLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
-                userProfile.get('webLink')), font=customtkinter.CTkFont(size=20, weight="bold"), text_color='#038aff')
-            self.webLinkLabel.bind("<Button>", lambda e: callback(userProfile.get('webLink'))) # click to open link
-            self.webLinkLabel.grid(row=1, column=0, padx=10, pady=10)
+            self.speedrunLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrun, compound='right')
+            self.speedrunLink.bind("<Button>", lambda e: callback(userProfile.get('webLink'))) # click to open link
+            self.speedrunLink.grid(row=0, column=1, padx=10, pady=10)
 
-            self.signUpDateLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
+            self.signUpDateLabel = customtkinter.CTkLabel(profileFrame, text="Member Since: {}".format(
                 userProfile.get('userSignup')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.signUpDateLabel.grid(row=2, column=0, padx=10, pady=10)
             
             ###
-            self.userNameLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
+            self.totalRunsLabel = customtkinter.CTkLabel(frameMain, text="Total Runs: {}".format(
                 runCountData.get('totalRuns')), font=customtkinter.CTkFont(size=20, weight="bold"))
-            self.userNameLabel.grid(row=3, column=0, padx=10, pady=10)
+            self.totalRunsLabel.grid(row=3, column=0, padx=10, pady=10)
 
-            self.webLinkLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
+            self.verifiedRunsLabel = customtkinter.CTkLabel(frameMain, text=" Verified Runs: {}".format(
                 runCountData.get('verifiedRuns')), font=customtkinter.CTkFont(size=20, weight="bold"))
-            self.webLinkLabel.grid(row=4, column=0, padx=10, pady=10)
+            self.verifiedRunsLabel.grid(row=4, column=0, padx=10, pady=10)
 
-            self.signUpDateLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
+            self.rejectedRunsLabel = customtkinter.CTkLabel(frameMain, text="Rejected Runs: {}".format(
                 runCountData.get('rejectedRuns')), font=customtkinter.CTkFont(size=20, weight="bold"))
-            self.signUpDateLabel.grid(row=5, column=0, padx=10, pady=10)
+            self.rejectedRunsLabel.grid(row=5, column=0, padx=10, pady=10)
 
             ###
-            self.firstPlaceLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
+            self.personalBestsLabel = customtkinter.CTkLabel(frameMain, text="Personal Bests: {}".format(
                 personalBestsData.get('personalBests')), font=customtkinter.CTkFont(size=20, weight="bold"))
-            self.firstPlaceLabel.grid(row=6, column=0, padx=10, pady=10)
+            self.personalBestsLabel.grid(row=6, column=0, padx=10, pady=10)
             
-            self.firstPlaceLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
+            self.firstPlaceLabel = customtkinter.CTkLabel(frameMain, text="1st: {}".format(
                 personalBestsData.get('firstPlace')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.firstPlaceLabel.grid(row=7, column=0, padx=10, pady=10)
 
-            self.secondPlaceLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
+            self.secondPlaceLabel = customtkinter.CTkLabel(frameMain, text="2nd: {}".format(
                 personalBestsData.get('secondPlace')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.secondPlaceLabel.grid(row=8, column=0, padx=10, pady=10)
 
-            self.thirdPlaceLabel = customtkinter.CTkLabel(frameMain, text="{}".format(
+            self.thirdPlaceLabel = customtkinter.CTkLabel(frameMain, text="3rd: {}".format(
                 personalBestsData.get('thirdPlace')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.thirdPlaceLabel.grid(row=9, column=0, padx=10, pady=10)
 
@@ -118,10 +123,17 @@ class App(customtkinter.CTk):
         # Create main frame and configure grid size
         frameMain = customtkinter.CTkFrame(self, corner_radius=0)
         frameMain.grid(row=1, column=0, sticky='NSWE')
-        # TODO: create grid within main frame to align components
 
-        # Main frame
-        # TODO: main frame components here
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
+
+    def test():
+        root = customtkinter.CTk()
+        root.geometry()
+        frame = customtkinter.CTkFrame(root)
+        frame.pack(pady=20, padx=60)
+        root.mainloop()
+
+# App.test()
+
