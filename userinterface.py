@@ -15,21 +15,34 @@ class App(customtkinter.CTk):
         WIDTH = 800
         HEIGHT = 600
 
+        # Settings for window
         # self.tk.eval('tk::PlaceWindow . center')
         self.lift()
         self.title("Speedrun Profile")
         self.geometry("{}x{}".format(WIDTH, HEIGHT))
         self.resizable(False, False)
 
-        speedrun = Image.open('speedrun.png').resize((20,20))
-        speedrun = ImageTk.PhotoImage(speedrun)
+        # Set Images
+        speedrunLogo = ImageTk.PhotoImage(Image.open('resources/speedrunLogo.png').resize((30,30)))
+        twitchLogo = ImageTk.PhotoImage(Image.open('resources/twitchLogo.png').resize((30,30)))
+        youtubeLogo = ImageTk.PhotoImage(Image.open('resources/youtubeLogo.png').resize((30,30)))
+
+        # Configure size of top and main frame
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=0, minsize=HEIGHT*.15)
+        self.rowconfigure(1, weight=1, minsize=HEIGHT*.85)
+
+        # Create top frame and configure grid size
+        frameTop = customtkinter.CTkFrame(
+            self, fg_color='#3B3F44', corner_radius=0)
+        frameTop.grid(row=0, column=0, sticky='NSWE')
+        # TODO: create grid within top frame to align components
 
         def searchUser():
             
             def callback(url):
                 webbrowser.open_new_tab(userProfile.get('webLink'))
  
-            
             # destroys widgets in mainFrame to refresh visuals
             if frameMain.winfo_children() is not None:
                 for widget in frameMain.winfo_children():
@@ -55,7 +68,7 @@ class App(customtkinter.CTk):
                 userProfile.get('userName')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.userNameLabel.grid(row=0, column=0, padx=10, pady=10)
 
-            self.speedrunLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrun, compound='right')
+            self.speedrunLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrunLogo, compound='right')
             self.speedrunLink.bind("<Button>", lambda e: callback(userProfile.get('webLink'))) # click to open link
             self.speedrunLink.grid(row=0, column=1, padx=10, pady=10)
 
@@ -93,16 +106,6 @@ class App(customtkinter.CTk):
                 personalBestsData.get('thirdPlace')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.thirdPlaceLabel.grid(row=9, column=0, padx=10, pady=10)
 
-        # Configure size of top and main frame
-        self.columnconfigure(0, weight=1)
-        self.rowconfigure(0, weight=0, minsize=HEIGHT*.15)
-        self.rowconfigure(1, weight=1, minsize=HEIGHT*.85)
-
-        # Create top frame and configure grid size
-        frameTop = customtkinter.CTkFrame(
-            self, fg_color='#3B3F44', corner_radius=0)
-        frameTop.grid(row=0, column=0, sticky='NSWE')
-        # TODO: create grid within top frame to align components
 
         # Top frame
         self.entry = customtkinter.CTkEntry(
@@ -127,13 +130,4 @@ class App(customtkinter.CTk):
 
     def change_appearance_mode_event(self, new_appearance_mode: str):
         customtkinter.set_appearance_mode(new_appearance_mode)
-
-    def test():
-        root = customtkinter.CTk()
-        root.geometry()
-        frame = customtkinter.CTkFrame(root)
-        frame.pack(pady=20, padx=60)
-        root.mainloop()
-
-# App.test()
 
