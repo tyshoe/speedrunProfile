@@ -28,6 +28,9 @@ class App(customtkinter.CTk):
         youtubeLogo = ImageTk.PhotoImage(Image.open('resources/youtubeLogo.png').resize((20,20)))
         speedrunsLiveLogo = ImageTk.PhotoImage(Image.open('resources/speedrunsLiveLogo.png').resize((20,20)))
         twitterLogo = ImageTk.PhotoImage(Image.open('resources/twitterLogo.png').resize((20,20)))
+        firstPlace = ImageTk.PhotoImage(Image.open('resources/1st.png').resize((20,20)))
+        secondPlace = ImageTk.PhotoImage(Image.open('resources/2nd.png').resize((20,20)))
+        thirdPlace = ImageTk.PhotoImage(Image.open('resources/3rd.png').resize((20,20)))
 
         # Configure size of top and main frame
         self.columnconfigure(0, weight=1)
@@ -70,7 +73,7 @@ class App(customtkinter.CTk):
                 userProfile.get('userName')), font=customtkinter.CTkFont(size=20, weight="bold"),fg_color='red', width=150)
             self.userNameLabel.grid(row=0, column=0, padx=(5,10), pady=(5,5))
 
-            self.speedrunLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrunLogo, compound='right', fg_color='blue')
+            self.speedrunLink = customtkinter.CTkLabel(profileFrame, text='', image=firstPlace, compound='right', fg_color='blue')
             self.speedrunLink.bind("<Button-1>", lambda e: callback(userProfile.get('speedrunLink'))) # click to open link
             self.speedrunLink.grid(row=0, column=1, pady=(5,5))
 
@@ -116,16 +119,13 @@ class App(customtkinter.CTk):
                 personalBestsData.get('personalBests')), font=customtkinter.CTkFont(size=20, weight="bold"))
             self.personalBestsLabel.grid(row=6, column=0, padx=10, pady=10)
             
-            self.firstPlaceLabel = customtkinter.CTkLabel(frameMain, text="1st: {}".format(
-                personalBestsData.get('firstPlace')), font=customtkinter.CTkFont(size=20, weight="bold"))
+            self.firstPlaceLabel = customtkinter.CTkLabel(frameMain, text=personalBestsData.get('firstPlace'), font=customtkinter.CTkFont(size=20, weight="bold"), image=firstPlace, compound='left')
             self.firstPlaceLabel.grid(row=7, column=0, padx=10, pady=10)
 
-            self.secondPlaceLabel = customtkinter.CTkLabel(frameMain, text="2nd: {}".format(
-                personalBestsData.get('secondPlace')), font=customtkinter.CTkFont(size=20, weight="bold"))
+            self.secondPlaceLabel = customtkinter.CTkLabel(frameMain, text=personalBestsData.get('secondPlace'), font=customtkinter.CTkFont(size=20, weight="bold"), image=secondPlace, compound='left')
             self.secondPlaceLabel.grid(row=8, column=0, padx=10, pady=10)
 
-            self.thirdPlaceLabel = customtkinter.CTkLabel(frameMain, text="3rd: {}".format(
-                personalBestsData.get('thirdPlace')), font=customtkinter.CTkFont(size=20, weight="bold"))
+            self.thirdPlaceLabel = customtkinter.CTkLabel(frameMain, text=personalBestsData.get('thirdPlace'), font=customtkinter.CTkFont(size=20, weight="bold"), image=thirdPlace, compound='left')
             self.thirdPlaceLabel.grid(row=9, column=0, padx=10, pady=10)
 
 
