@@ -17,17 +17,23 @@ def getUserProfile(profileToSearch):
     data = getDataFromJson(url)[0]
 
     # print()
-    # print ('DATA: ' + str(data))
+    print ('DATA: ' + str(data))
 
-    # set variables from data
+    # Set variables from data
     userId = data['id']
-    webLink = data['weblink']
     userName = data['names']['international']
-    # grabs data from date timezone string
+    speedrunLink = data['weblink']
+    twitchLink = data['twitch'] if data['twitch'] is None else data['twitch']['uri']
+    youtubeLink = data['youtube'] if data['youtube'] is None else data['youtube']['uri']
+    twitterLink = data['twitter'] if data['twitter'] is None else data['twitter']['uri']
+    speedrunsLiveLink = data['speedrunslive'] if data['speedrunslive'] is None else data['speedrunslive']['uri']
+    # Grabs data from date timezone string
     signup = (datetime.datetime.strptime(data['signup'], "%Y-%m-%dT%H:%M:%SZ"))
     userSignup = signup.strftime("%m-%d-%Y")
-
-    userProfile = {'userId': userId, 'webLink': webLink,
+    
+    userProfile = {'userId': userId, 'speedrunLink': speedrunLink,
+                   'twitchLink': twitchLink, 'youtubeLink': youtubeLink,
+                   'twitterLink': twitterLink, 'speedrunsLiveLink': speedrunsLiveLink,
                    'userName': userName, 'userSignup': userSignup}
 
     return userProfile

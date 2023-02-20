@@ -23,9 +23,11 @@ class App(customtkinter.CTk):
         self.resizable(False, False)
 
         # Set Images
-        speedrunLogo = ImageTk.PhotoImage(Image.open('resources/speedrunLogo.png').resize((30,30)))
-        twitchLogo = ImageTk.PhotoImage(Image.open('resources/twitchLogo.png').resize((30,30)))
-        youtubeLogo = ImageTk.PhotoImage(Image.open('resources/youtubeLogo.png').resize((30,30)))
+        speedrunLogo = ImageTk.PhotoImage(Image.open('resources/speedrunLogo.png').resize((20,20)))
+        twitchLogo = ImageTk.PhotoImage(Image.open('resources/twitchLogo.png').resize((20,20)))
+        youtubeLogo = ImageTk.PhotoImage(Image.open('resources/youtubeLogo.png').resize((20,20)))
+        speedrunsLiveLogo = ImageTk.PhotoImage(Image.open('resources/speedrunsLiveLogo.png').resize((20,20)))
+        twitterLogo = ImageTk.PhotoImage(Image.open('resources/twitterLogo.png').resize((20,20)))
 
         # Configure size of top and main frame
         self.columnconfigure(0, weight=1)
@@ -41,7 +43,8 @@ class App(customtkinter.CTk):
         def searchUser():
             
             def callback(url):
-                webbrowser.open_new_tab(userProfile.get('webLink'))
+                print (url)
+                webbrowser.open_new_tab(url)
  
             # destroys widgets in mainFrame to refresh visuals
             if frameMain.winfo_children() is not None:
@@ -69,8 +72,24 @@ class App(customtkinter.CTk):
             self.userNameLabel.grid(row=0, column=0, padx=10, pady=10)
 
             self.speedrunLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrunLogo, compound='right')
-            self.speedrunLink.bind("<Button>", lambda e: callback(userProfile.get('webLink'))) # click to open link
-            self.speedrunLink.grid(row=0, column=1, padx=10, pady=10)
+            self.speedrunLink.bind("<Button-1>", lambda e: callback(userProfile.get('speedrunLink'))) # click to open link
+            self.speedrunLink.grid(row=0, column=1, padx=5, pady=10)
+
+            self.youtubeLink = customtkinter.CTkLabel(profileFrame, text='', image=youtubeLogo, compound='right')
+            self.youtubeLink.bind("<Button>", lambda e: callback(userProfile.get('youtubeLink'))) # click to open link
+            self.youtubeLink.grid(row=0, column=2, padx=5, pady=10)
+
+            self.twitchLink = customtkinter.CTkLabel(profileFrame, text='', image=twitchLogo, compound='right')
+            self.twitchLink.bind("<Button>", lambda e: callback(userProfile.get('twitchLink'))) # click to open link
+            self.twitchLink.grid(row=0, column=3, padx=5, pady=10)
+
+            self.speedrunsLiveLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrunsLiveLogo, compound='right')
+            self.speedrunsLiveLink.bind("<Button>", lambda e: callback(userProfile.get('speedrunsLiveLink'))) # click to open link
+            self.speedrunsLiveLink.grid(row=0, column=4, padx=5, pady=10)
+
+            self.twitterLink = customtkinter.CTkLabel(profileFrame, text='', image=twitterLogo, compound='right')
+            self.twitterLink.bind("<Button>", lambda e: callback(userProfile.get('twitterLink'))) # click to open link
+            self.twitterLink.grid(row=0, column=5, padx=5, pady=10)
 
             self.signUpDateLabel = customtkinter.CTkLabel(profileFrame, text="Member Since: {}".format(
                 userProfile.get('userSignup')), font=customtkinter.CTkFont(size=20, weight="bold"))
