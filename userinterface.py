@@ -64,36 +64,41 @@ class App(customtkinter.CTk):
                 userProfile.get('userId'))
 
             profileFrame = customtkinter.CTkFrame(frameMain)
-            profileFrame.grid(row=0, column=1)
+            profileFrame.grid(row=0, column=0)
 
             # Display user data
             self.userNameLabel = customtkinter.CTkLabel(profileFrame, text="{}".format(
-                userProfile.get('userName')), font=customtkinter.CTkFont(size=20, weight="bold"))
-            self.userNameLabel.grid(row=0, column=0, padx=10, pady=10)
+                userProfile.get('userName')), font=customtkinter.CTkFont(size=20, weight="bold"), width=100)
+            self.userNameLabel.grid(row=0, column=0, padx=10, pady=(5,10))
 
-            self.speedrunLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrunLogo, compound='right')
-            self.speedrunLink.bind("<Button-1>", lambda e: callback(userProfile.get('speedrunLink'))) # click to open link
-            self.speedrunLink.grid(row=0, column=1, padx=5, pady=10)
+            if userProfile.get('speedrunLink') is not None:
+                self.speedrunLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrunLogo, compound='right')
+                self.speedrunLink.bind("<Button-1>", lambda e: callback(userProfile.get('speedrunLink'))) # click to open link
+                self.speedrunLink.grid(row=0, column=1, padx=5, pady=10)
 
-            self.youtubeLink = customtkinter.CTkLabel(profileFrame, text='', image=youtubeLogo, compound='right')
-            self.youtubeLink.bind("<Button>", lambda e: callback(userProfile.get('youtubeLink'))) # click to open link
-            self.youtubeLink.grid(row=0, column=2, padx=5, pady=10)
+            if userProfile.get('youtubeLink') is not None:
+                self.youtubeLink = customtkinter.CTkLabel(profileFrame, text='', image=youtubeLogo, compound='right')
+                self.youtubeLink.bind("<Button>", lambda e: callback(userProfile.get('youtubeLink'))) # click to open link
+                self.youtubeLink.grid(row=0, column=2, padx=5, pady=10)
 
-            self.twitchLink = customtkinter.CTkLabel(profileFrame, text='', image=twitchLogo, compound='right')
-            self.twitchLink.bind("<Button>", lambda e: callback(userProfile.get('twitchLink'))) # click to open link
-            self.twitchLink.grid(row=0, column=3, padx=5, pady=10)
+            if userProfile.get('twitchLink') is not None:
+                self.twitchLink = customtkinter.CTkLabel(profileFrame, text='', image=twitchLogo, compound='right')
+                self.twitchLink.bind("<Button>", lambda e: callback(userProfile.get('twitchLink'))) # click to open link
+                self.twitchLink.grid(row=0, column=3, padx=5, pady=10)
 
-            self.speedrunsLiveLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrunsLiveLogo, compound='right')
-            self.speedrunsLiveLink.bind("<Button>", lambda e: callback(userProfile.get('speedrunsLiveLink'))) # click to open link
-            self.speedrunsLiveLink.grid(row=0, column=4, padx=5, pady=10)
+            if userProfile.get('speedrunsLiveLink') is not None:
+                self.speedrunsLiveLink = customtkinter.CTkLabel(profileFrame, text='', image=speedrunsLiveLogo, compound='right')
+                self.speedrunsLiveLink.bind("<Button>", lambda e: callback(userProfile.get('speedrunsLiveLink'))) # click to open link
+                self.speedrunsLiveLink.grid(row=0, column=4, padx=5, pady=10)
 
-            self.twitterLink = customtkinter.CTkLabel(profileFrame, text='', image=twitterLogo, compound='right')
-            self.twitterLink.bind("<Button>", lambda e: callback(userProfile.get('twitterLink'))) # click to open link
-            self.twitterLink.grid(row=0, column=5, padx=5, pady=10)
+            if userProfile.get('speedrunsLiveLink') is not None:
+                self.twitterLink = customtkinter.CTkLabel(profileFrame, text='', image=twitterLogo, compound='right')
+                self.twitterLink.bind("<Button>", lambda e: callback(userProfile.get('twitterLink'))) # click to open link
+                self.twitterLink.grid(row=0, column=5, padx=5, pady=10)
 
             self.signUpDateLabel = customtkinter.CTkLabel(profileFrame, text="Member Since: {}".format(
-                userProfile.get('userSignup')), font=customtkinter.CTkFont(size=20, weight="bold"))
-            self.signUpDateLabel.grid(row=2, column=0, padx=10, pady=10)
+                userProfile.get('userSignup')), font=customtkinter.CTkFont(size=20))
+            self.signUpDateLabel.grid(row=2, column=0, padx=10, pady=10, columnspan=6)
             
             ###
             self.totalRunsLabel = customtkinter.CTkLabel(frameMain, text="Total Runs: {}".format(
