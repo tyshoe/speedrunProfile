@@ -1,10 +1,12 @@
 import datetime
 import requests
 
+HEADERS = {'User-Agent': 'SpeedrunTopThree/1.0'}
+
 
 def getDataFromJson(url):
     """Gets data from dictionary of json file from HTTP request"""
-    r = (requests.get(url))
+    r = (requests.get(url, headers=HEADERS))
     print(r)
     return r.json()['data']
 
@@ -17,7 +19,7 @@ def getUserProfile(profileToSearch):
     data = getDataFromJson(url)[0]
 
     # print()
-    print ('DATA: ' + str(data))
+    print('DATA: ' + str(data))
 
     # Set variables from data
     userId = data['id']
@@ -30,7 +32,7 @@ def getUserProfile(profileToSearch):
     # Grabs data from date timezone string
     signup = (datetime.datetime.strptime(data['signup'], "%Y-%m-%dT%H:%M:%SZ"))
     userSignup = signup.strftime("%m-%d-%Y")
-    
+
     userProfile = {'userId': userId, 'speedrunLink': speedrunLink,
                    'twitchLink': twitchLink, 'youtubeLink': youtubeLink,
                    'twitterLink': twitterLink, 'speedrunsLiveLink': speedrunsLiveLink,
@@ -45,18 +47,16 @@ def getPersonalBests(userId):
         userId)
     data = getDataFromJson(url)
 
-    firstPlace = 0
-    secondPlace = 0
-    thirdPlace = 0
-
-    personalBests = len(data)
-
-    # print ('DATA Len: {}'.format(len(data)))
-
     # check if user has runs
     if not data:
         return {}
-    
+
+    firstPlace = 0
+    secondPlace = 0
+    thirdPlace = 0
+    personalBests = len(data)
+
+    # print ('DATA Len: {}'.format(len(data)))
     for run in range(len(data)):
         if data[run]['place'] == 1:
             firstPlace += 1
@@ -85,10 +85,10 @@ def getRunCount(userId):
 
     if not data:
         return {}
-    
+
     verifiedRuns = 0
     rejectedRuns = 0
-    
+
     for run in range(len(data)):
         # print(data[run]['status']['status'])
         if data[run]['status']['status'] == 'verified':
@@ -96,15 +96,15 @@ def getRunCount(userId):
         elif data[run]['status']['status'] == 'rejected':
             rejectedRuns += 1
 
-    print ('Total Runs: {}'.format(len(data)))
-    print ('Verified Runs: {}'.format(verifiedRuns))
-    print ('Rejected Runs: {}'.format(rejectedRuns))
+    print('Total Runs: {}'.format(len(data)))
+    print('Verified Runs: {}'.format(verifiedRuns))
+    print('Rejected Runs: {}'.format(rejectedRuns))
 
     runCountData = {'totalRuns': len(data), 'verifiedRuns': verifiedRuns,
                     'rejectedRuns': rejectedRuns}
 
     return runCountData
-    
+
 
 # getUserProfile('LRF_Series')
 # getPersonalBests('7j4zz75x')
@@ -113,4 +113,4 @@ def getRunCount(userId):
 # getUserProfile('tyshoe')
 # getPersonalBests('jmo3vke8')
 
-getRunCount('jmo3vke8')
+# getRunCount('jmo3vke8')
