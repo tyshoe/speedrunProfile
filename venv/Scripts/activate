@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\tysho\OneDrive\Desktop\Python\venv"
+VIRTUAL_ENV="C:\Users\tysho\OneDrive\Desktop\speedrunTopThree\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
