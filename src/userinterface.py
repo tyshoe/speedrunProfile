@@ -230,13 +230,25 @@ class App(customtkinter.CTk):
                     compound="left",
                 )
                 self.thirdPlaceLabel.grid(row=3, column=0, padx=10)
+
+                ###
+                self.textbox = customtkinter.CTkTextbox(
+                    frameMain, width=400, corner_radius=0
+                )
+                self.textbox.grid(row=0, column=1)
+
+                for game in runCountData.get("allRunsByGame"):
+                    runCount = runCountData.get("allRunsByGame").get(game)
+                    self.textbox.insert("0.0", "{} : {}".format(game, runCount) + "\n")
+                self.textbox.configure(state="disabled")
+
             except IndexError:
                 self.errorLabel = customtkinter.CTkLabel(
                     frameMain,
                     text="Please enter a valid user name",
                     font=customtkinter.CTkFont(size=20, weight="bold"),
                 )
-                self.errorLabel.grid(row=6, column=0, padx=10, pady=10)
+                self.errorLabel.grid(row=0, column=0, padx=10, pady=10)
 
         # Top frame
         self.entry = customtkinter.CTkEntry(

@@ -71,8 +71,8 @@ def getPersonalBests(userId):
             secondPlace += 1
         elif data[run]["place"] == 3:
             thirdPlace += 1
-        print("DATA {}: {}".format(run, (data[0])))
-        print("")
+        # print("DATA {}: {}".format(run, (data[0])))
+        # print("")
 
     # print("{}".format(startTime))
     # print("1st Place runs: {}".format(str(firstPlace)))
@@ -141,7 +141,7 @@ def getRunsByGame(data):
     for key, value in sorted(freq.items(), key=lambda x: x[1], reverse=True):
         gameName = getGameName(key)
         newFreq[gameName] = value
-
+    # print(newFreq)
     return newFreq
 
 
@@ -161,6 +161,6 @@ def getGameName(gameId):
 # getDataFromJson('https://www.speedrun.com/api/v1/users?lookup=tyshoe')
 # getUserProfile("tyshoe")
 # getPersonalBests("jmo3vke8")
-getRunCount("jmo3vke8")
+# getRunCount("jmo3vke8")
 
 # getRunCount('jmo3vke8')
