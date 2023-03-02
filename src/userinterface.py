@@ -1,6 +1,6 @@
 import webbrowser
 import customtkinter
-from PIL import Image, ImageTk
+from PIL import Image
 import datarequest
 
 # Settings
@@ -29,28 +29,28 @@ class App(customtkinter.CTk):
         self.resizable(False, False)
 
         # Set Images
-        twitchLogo = ImageTk.PhotoImage(
+        twitchLogo = customtkinter.CTkImage(
             Image.open("resources/twitchLogo.png").resize((20, 20))
         )
-        youtubeLogo = ImageTk.PhotoImage(
+        youtubeLogo = customtkinter.CTkImage(
             Image.open("resources/youtubeLogo.png").resize((20, 20))
         )
-        speedrunsLiveLogo = ImageTk.PhotoImage(
+        speedrunsLiveLogo = customtkinter.CTkImage(
             Image.open("resources/speedrunsLiveLogo.png").resize((20, 20))
         )
-        twitterLogo = ImageTk.PhotoImage(
+        twitterLogo = customtkinter.CTkImage(
             Image.open("resources/twitterLogo.png").resize((20, 20))
         )
-        firstPlace = ImageTk.PhotoImage(
+        firstPlace = customtkinter.CTkImage(
             Image.open("resources/1st.png").resize((20, 20))
         )
-        secondPlace = ImageTk.PhotoImage(
+        secondPlace = customtkinter.CTkImage(
             Image.open("resources/2nd.png").resize((20, 20))
         )
-        thirdPlace = ImageTk.PhotoImage(
+        thirdPlace = customtkinter.CTkImage(
             Image.open("resources/3rd.png").resize((20, 20))
         )
-        settingsIcon = ImageTk.PhotoImage(
+        settingsIcon = customtkinter.CTkImage(
             Image.open("resources/settings.png").resize((20, 20))
         )
 
@@ -309,7 +309,7 @@ class App(customtkinter.CTk):
         self.appearanceLabel = customtkinter.CTkLabel(
             frameMain,
             text="Appearance",
-            font=customtkinter.CTkFont(size=20),
+            font=customtkinter.CTkFont(size=16),
         )
         self.appearanceLabel.grid(row=0, column=0, padx=10, pady=5)
 
