@@ -12,6 +12,12 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
+        # Get appearance mode
+        self.currentAppearance = customtkinter.get_appearance_mode()
+        self.newAppearance = customtkinter.StringVar()
+        self.newAppearance.set(self.currentAppearance)
+
+        # Window Settings
         WIDTH = 800
         HEIGHT = 600
 
@@ -43,6 +49,9 @@ class App(customtkinter.CTk):
         )
         thirdPlace = ImageTk.PhotoImage(
             Image.open("resources/3rd.png").resize((20, 20))
+        )
+        settingsIcon = ImageTk.PhotoImage(
+            Image.open("resources/settings.png").resize((20, 20))
         )
 
         # Configure size of top and main frame
@@ -263,19 +272,26 @@ class App(customtkinter.CTk):
             frameTop, width=40, text="speedrun.com REST API", command=self.openRestApi
         )
         self.button.grid(row=0, column=2, padx=10, pady=10)
-        self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(
+
+        self.settingsIcon = customtkinter.CTkLabel(
             frameTop,
-            values=["System", "Dark", "Light"],
-            command=self.change_appearance_mode_event,
+            text="",
+            image=settingsIcon,
+            compound="right",
         )
-        self.appearance_mode_optionemenu.grid(row=0, column=3, padx=10, pady=10)
+        self.settingsIcon.bind(
+            "<Button>",
+            lambda e: self.openSettings(frameMain),
+        )  # click to open link
+        self.settingsIcon.grid(row=0, column=5, pady=(5, 5))
 
         # Create main frame and configure grid size
         frameMain = customtkinter.CTkFrame(self, corner_radius=0)
         frameMain.grid(row=1, column=0, sticky="NSWE")
 
-    def change_appearance_mode_event(self, new_appearance_mode: str):
-        customtkinter.set_appearance_mode(new_appearance_mode)
+    def change_appearance_mode_event(self, value):
+        print(value)
+        customtkinter.set_appearance_mode(value)
 
     def callback(self, url):
         webbrowser.open_new_tab(url)
@@ -284,3 +300,42 @@ class App(customtkinter.CTk):
         webbrowser.open_new_tab(
             "https://github.com/speedruncomorg/api#speedruncom-rest-api"
         )
+
+    def openSettings(self, frameMain):
+        # Clear Main Frame
+        for widget in frameMain.winfo_children():
+            widget.destroy()
+
+        self.appearanceLabel = customtkinter.CTkLabel(
+            frameMain,
+            text="Appearance",
+            font=customtkinter.CTkFont(size=20),
+        )
+        self.appearanceLabel.grid(row=0, column=0, padx=10, pady=5)
+
+        self.radiobutton_1 = customtkinter.CTkRadioButton(
+            frameMain,
+            text="Light Theme",
+            command=lambda: self.change_appearance_mode_event(self.newAppearance.get()),
+            variable=self.newAppearance,
+            value="Light",
+        )
+        self.radiobutton_1.grid(row=1, column=0, padx=10, pady=10)
+
+        self.radiobutton_2 = customtkinter.CTkRadioButton(
+            frameMain,
+            text="Dark Theme",
+            command=lambda: self.change_appearance_mode_event(self.newAppearance.get()),
+            variable=self.newAppearance,
+            value="Dark",
+        )
+        self.radiobutton_2.grid(row=2, column=0, padx=10, pady=10)
+
+        self.radiobutton_3 = customtkinter.CTkRadioButton(
+            frameMain,
+            text="Device Default",
+            command=lambda: self.change_appearance_mode_event(self.newAppearance.get()),
+            variable=self.newAppearance,
+            value="System",
+        )
+        self.radiobutton_3.grid(row=3, column=0, padx=10, pady=10)
