@@ -1,4 +1,9 @@
 # speedrunProfile
+Please note: This repository is no longer being uaintained.
+
+**Features:**
+- Count of top 3 placements
+- Count of runs per game
 
 # How to clone repository:
 1. Open Visual Studio Code
