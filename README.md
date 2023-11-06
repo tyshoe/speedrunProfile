@@ -1,5 +1,5 @@
 # speedrunProfile
-Please note: This repository is no longer being uaintained.
+Please note: This repository is no longer being maintained.
 
 **Features:**
 - Count of top 3 placements
