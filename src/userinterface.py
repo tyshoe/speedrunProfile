@@ -91,7 +91,6 @@ class App(customtkinter.CTk):
                     profileFrame,
                     text="{}".format(userProfile.get("userName")),
                     font=customtkinter.CTkFont(size=20, weight="bold"),
-                    fg_color="red",
                     width=150,
                 )
                 self.userNameLabel.grid(row=0, column=0, padx=(5, 10), pady=(5, 5))
@@ -101,7 +100,6 @@ class App(customtkinter.CTk):
                     text="",
                     image=firstPlace,
                     compound="right",
-                    fg_color="blue",
                 )
                 self.speedrunLink.bind(
                     "<Button-1>",
@@ -115,7 +113,6 @@ class App(customtkinter.CTk):
                         text="",
                         image=youtubeLogo,
                         compound="right",
-                        fg_color="green",
                     )
                     self.youtubeLink.bind(
                         "<Button>",
@@ -129,7 +126,6 @@ class App(customtkinter.CTk):
                         text="",
                         image=twitchLogo,
                         compound="right",
-                        fg_color="purple",
                     )
                     self.twitchLink.bind(
                         "<Button>",
@@ -143,7 +139,6 @@ class App(customtkinter.CTk):
                         text="",
                         image=speedrunsLiveLogo,
                         compound="right",
-                        fg_color="yellow",
                     )
                     self.speedrunsLiveLink.bind(
                         "<Button>",
@@ -157,7 +152,6 @@ class App(customtkinter.CTk):
                         text="",
                         image=twitterLogo,
                         compound="right",
-                        fg_color="white",
                     )
                     self.twitterLink.bind(
                         "<Button>",
