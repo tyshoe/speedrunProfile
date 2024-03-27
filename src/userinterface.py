@@ -78,6 +78,7 @@ class App(customtkinter.CTk):
 
                 # Get user data
                 userProfile = datarequest.getUserProfile(userName)
+                print(userProfile)
                 personalBestsData = datarequest.getPersonalBests(
                     userProfile.get("userId")
                 )
@@ -107,7 +108,7 @@ class App(customtkinter.CTk):
                 )  # click to open link
                 self.speedrunLink.grid(row=0, column=1, pady=(5, 5))
 
-                if userProfile.get("youtubeLink") is None:
+                if userProfile.get("youtubeLink") is not None:
                     self.youtubeLink = customtkinter.CTkLabel(
                         profileFrame,
                         text="",
@@ -120,7 +121,7 @@ class App(customtkinter.CTk):
                     )  # click to open link
                     self.youtubeLink.grid(row=0, column=2, pady=(5, 5))
 
-                if userProfile.get("twitchLink") is None:
+                if userProfile.get("twitchLink") is not None:
                     self.twitchLink = customtkinter.CTkLabel(
                         profileFrame,
                         text="",
@@ -133,7 +134,7 @@ class App(customtkinter.CTk):
                     )  # click to open link
                     self.twitchLink.grid(row=0, column=3, pady=(5, 5))
 
-                if userProfile.get("speedrunsLiveLink") is None:
+                if userProfile.get("speedrunsLiveLink") is not None:
                     self.speedrunsLiveLink = customtkinter.CTkLabel(
                         profileFrame,
                         text="",
@@ -146,7 +147,7 @@ class App(customtkinter.CTk):
                     )  # click to open link
                     self.speedrunsLiveLink.grid(row=0, column=4, pady=(5, 5))
 
-                if userProfile.get("twitterLink") is None:
+                if userProfile.get("twitterLink") is not None:
                     self.twitterLink = customtkinter.CTkLabel(
                         profileFrame,
                         text="",
