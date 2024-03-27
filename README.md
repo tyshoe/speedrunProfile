@@ -5,6 +5,13 @@ Please note: This repository is no longer being maintained.
 - Count of top 3 placements
 - Count of runs per game
 
+# How to install:
+1. Go to releases [Latest Release](https://github.com/tyshoe/speedrunProfile/releases/tag/v0.1.0)
+2. Download main.zip
+3. If download is blocked because its supsicous, this is a false positive.  You are safe to download.
+4. In your downloads folder, right click and select Extract to main\
+5. Open your new main folder and run speedrunProfile.exe
+
 # How to clone repository:
 1. Open Visual Studio Code
 2. Clone Git Repository
@@ -12,7 +19,7 @@ Please note: This repository is no longer being maintained.
 4. Paste https://github.com/tyshoe/speedrunProfile.git
 5. Choose folder to clone into
 
-# How to download to run app:
+# How to download to run app with vscode:
 1. Download code
    1. Download ZIP and extract
    2. Open vscode
