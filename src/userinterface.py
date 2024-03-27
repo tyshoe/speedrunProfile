@@ -29,30 +29,56 @@ class App(customtkinter.CTk):
         self.resizable(False, False)
 
         # Set Images
-        twitchLogo = customtkinter.CTkImage(
-            Image.open("resources/twitchLogo.png").resize((20, 20))
-        )
-        youtubeLogo = customtkinter.CTkImage(
-            Image.open("resources/youtubeLogo.png").resize((20, 20))
-        )
-        speedrunsLiveLogo = customtkinter.CTkImage(
-            Image.open("resources/speedrunsLiveLogo.png").resize((20, 20))
-        )
-        twitterLogo = customtkinter.CTkImage(
-            Image.open("resources/twitterLogo.png").resize((20, 20))
-        )
-        firstPlace = customtkinter.CTkImage(
-            Image.open("resources/1st.png").resize((20, 20))
-        )
-        secondPlace = customtkinter.CTkImage(
-            Image.open("resources/2nd.png").resize((20, 20))
-        )
-        thirdPlace = customtkinter.CTkImage(
-            Image.open("resources/3rd.png").resize((20, 20))
-        )
-        settingsIcon = customtkinter.CTkImage(
-            Image.open("resources/settings.png").resize((20, 20))
-        )
+        try:
+            twitchLogo = customtkinter.CTkImage(
+                Image.open("resources/twitchLogo.png").resize((20, 20))
+            )
+            youtubeLogo = customtkinter.CTkImage(
+                Image.open("resources/youtubeLogo.png").resize((20, 20))
+            )
+            speedrunsLiveLogo = customtkinter.CTkImage(
+                Image.open("resources/speedrunsLiveLogo.png").resize((20, 20))
+            )
+            twitterLogo = customtkinter.CTkImage(
+                Image.open("resources/twitterLogo.png").resize((20, 20))
+            )
+            firstPlace = customtkinter.CTkImage(
+                Image.open("resources/1st.png").resize((20, 20))
+            )
+            secondPlace = customtkinter.CTkImage(
+                Image.open("resources/2nd.png").resize((20, 20))
+            )
+            thirdPlace = customtkinter.CTkImage(
+                Image.open("resources/3rd.png").resize((20, 20))
+            )
+            settingsIcon = customtkinter.CTkImage(
+                Image.open("resources/settings.png").resize((20, 20))
+            )
+        except:
+            twitchLogo = customtkinter.CTkImage(
+                Image.open("_internal/resources/twitchLogo.png").resize((20, 20))
+            )
+            youtubeLogo = customtkinter.CTkImage(
+                Image.open("_internal/resources/youtubeLogo.png").resize((20, 20))
+            )
+            speedrunsLiveLogo = customtkinter.CTkImage(
+                Image.open("_internal/resources/speedrunsLiveLogo.png").resize((20, 20))
+            )
+            twitterLogo = customtkinter.CTkImage(
+                Image.open("_internal/resources/twitterLogo.png").resize((20, 20))
+            )
+            firstPlace = customtkinter.CTkImage(
+                Image.open("_internal/resources/1st.png").resize((20, 20))
+            )
+            secondPlace = customtkinter.CTkImage(
+                Image.open("_internal/resources/2nd.png").resize((20, 20))
+            )
+            thirdPlace = customtkinter.CTkImage(
+                Image.open("_internal/resources/3rd.png").resize((20, 20))
+            )
+            settingsIcon = customtkinter.CTkImage(
+                Image.open("_internal/resources/settings.png").resize((20, 20))
+            )
 
         # Configure size of top and main frame
         self.columnconfigure(0, weight=1)
